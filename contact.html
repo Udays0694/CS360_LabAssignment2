@@ -1,0 +1,100 @@
+<!--
+Name: Uday Singh
+Course: Database Systems Lab (CS360L)
+Lab Assignment 2: Creating and Designing the Bootstrap Webpage (contact.html)
+Date: 02/17/2025
+Submitted to: Mr Mahib Ornob
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | University of Idaho Photo Gallery</title>
+  
+  <!-- Bootstrap 4 CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="home.html">
+      <img src="images/logo.png" alt="University of Idaho Logo" style="height: 150px; width: 350px">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="home.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="gallery.html"><i class="fas fa-camera"></i> Photo Gallery</a>
+        </li>
+        <!-- External Link -->
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.uidaho.edu" target="_blank"><i class="fas fa-external-link-alt"></i> External Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contact Section Content -->
+  <div class="container my-5">
+    <h2 class="text-center">Contact Us</h2>
+    <p class="text-center">Feel free to get in touch with us for any inquiries. We are here to help!</p>
+    <form>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-light">
+    <p>&copy; 2025 University of Idaho. All Rights Reserved.</p>
+  </footer>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Include general.js -->
+  <script src="general.js"></script>
+
+  <!-- JavaScript to dynamically set the background image -->
+  <script>
+    // Set the background image for the body
+    document.body.style.backgroundImage = "url('images/photo13.png')";
+    document.body.style.backgroundSize = "cover";  // Ensures the image covers the whole screen
+    document.body.style.backgroundPosition = "center";  // Center the image
+    document.body.style.backgroundRepeat = "no-repeat";  // Prevents repeating the image
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!--
+Name: Uday Singh
+Course: Database Systems Lab (CS360L)
+Lab Assignment 2: Creating and Designing the Bootstrap Webpage (gallery.html)
+Date: 02/17/2025
+Submitted to: Mr Mahib Ornob
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .gallery-img {
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-body {
+            position: relative;
+        }
+
+        .zoomable {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .progress-bar {
+            height: 5px;
+            width: 0%;
+            background-color: #007bff;
+            transition: width 5s linear;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="home.html">
+                        <img src="images/logo.png" alt="University of Idaho Logo" style="height: 150px; width: 350px">
+                    </a>
+                </li>
+                <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                <li><a href="gallery.html" class="active"><i class="fas fa-camera"></i> Gallery</a></li>
+                <li><a href="https://www.uidaho.edu" target="_blank"><i class="fas fa-external-link-alt"></i> External Link</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <section class="row gallery-container">
+            <!-- Gallery Images -->
+            <div class="col-md-3">
+                <img src="images/photo1.png" class="img-fluid rounded shadow gallery-img" alt="Photo 1" onclick="openModal(0)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo2.png" class="img-fluid rounded shadow gallery-img" alt="Photo 2" onclick="openModal(1)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo3.png" class="img-fluid rounded shadow gallery-img" alt="Photo 3" onclick="openModal(2)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo4.png" class="img-fluid rounded shadow gallery-img" alt="Photo 4" onclick="openModal(3)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo5.jpg" class="img-fluid rounded shadow gallery-img" alt="Photo 5" onclick="openModal(4)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo6.png" class="img-fluid rounded shadow gallery-img" alt="Photo 6" onclick="openModal(5)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo7.jpg" class="img-fluid rounded shadow gallery-img" alt="Photo 7" onclick="openModal(6)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo8.jpg" class="img-fluid rounded shadow gallery-img" alt="Photo 8" onclick="openModal(7)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo9.jpg" class="img-fluid rounded shadow gallery-img" alt="Photo 9" onclick="openModal(8)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo10.jpg" class="img-fluid rounded shadow gallery-img" alt="Photo 10" onclick="openModal(9)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo11.png" class="img-fluid rounded shadow gallery-img" alt="Photo 11" onclick="openModal(10)">
+            </div>
+            <div class="col-md-3">
+                <img src="images/photo12.png" class="img-fluid rounded shadow gallery-img" alt="Photo 12" onclick="openModal(11)">
+            </div>
+        </section>
+    </main>
+
+    <!-- Bootstrap Modal for Enlarged Images -->
+    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="photoTitle">Photo Title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="slideshowProgress"></div>
+                </div>
+                <div class="modal-body text-center">
+                    <button class="btn btn-light position-absolute" style="left: 10px;" onclick="prevImage()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <img id="modalImg" class="img-fluid rounded shadow zoomable" src="" alt="Photo">
+                    <button class="btn btn-light position-absolute" style="right: 10px;" onclick="nextImage()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <p class="mt-3" id="photoDesc">Photo description goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="toggleFullscreen()">Fullscreen</button>
+                    <button class="btn btn-success" onclick="downloadImage()">Download</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 bg-light">
+        <p>&copy; 2025 University of Idaho Photo Gallery. All Rights Reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- JavaScript for Modal -->
+    <script>
+        const images = [
+            { src: "images/photo1.png", title: "The Administration Building", description: "The Administration Building at the University of Idaho is a central campus landmark, housing key administrative offices and serving as the heart of university operations." },
+            { src: "images/photo2.png", title: "The Integrated Research and Innovation Center (IRIC)", description: "The Integrated Research and Innovation Center (IRIC) at the University of Idaho is a hub for research, collaboration, and innovation, bringing together faculty, students, and industry partners to drive technological advancements and foster interdisciplinary work." },
+            { src: "images/photo3.png", title: "Water Center at the University of Idaho", description: "The Water Center at the University of Idaho is dedicated to addressing water-related challenges through research, education, and outreach. It focuses on sustainable water management, conservation, and improving water quality in Idaho and beyond." },
+            { src: "images/photo4.png", title: "Teaching and Learning Center (TLC)", description: "The Teaching and Learning Center (TLC) at the University of Idaho supports faculty and staff in enhancing teaching and learning experiences. It offers professional development, resources, and workshops aimed at improving instructional practices and fostering student success across disciplines." },
+            { src: "images/photo5.jpg", title: "Campus Center", description: "The Campus Center at the University of Idaho serves as a central hub for student activities, offering spaces for dining, socializing, and student services. It hosts various events, organizations, and provides resources to foster a vibrant campus community. The center is key to student engagement and campus life." },
+            { src: "images/photo6.png", title: "Main Entrance", description: "The main entrance of the University of Idaho, located at the heart of the Moscow campus, welcomes visitors with a grand and inviting gateway. It features a prominent sign marking the university’s identity and is surrounded by beautiful landscaping. The entrance serves as the primary access point to the campus, offering a sense of arrival and pride to students, staff, and visitors." },
+            { src: "images/photo7.jpg", title: "ICCU Arena", description: "The ICCU Arena at the University of Idaho is a modern, state-of-the-art sports facility located on the Moscow campus. It serves as the home venue for the university’s basketball teams and provides a premier setting for various events, including concerts and community activities. The arena is designed with advanced amenities, offering seating for thousands of spectators and providing a dynamic atmosphere for both athletes and fans." },
+            { src: "images/photo8.jpg", title: "ICCU Arena entrance", description: "The ICCU Arena entrance at the University of Idaho is a striking and modern entryway that welcomes visitors to the venue. Featuring contemporary architectural design, the entrance is designed to provide easy access to the arena, with spacious walkways and clear signage. The area is well-lit and designed for both functionality and aesthetics, offering a smooth transition from the exterior to the vibrant atmosphere inside the arena. It serves as a prominent gateway for fans, athletes, and guests attending various events hosted at the ICCU Arena." },
+            { src: "images/photo9.jpg", title: "University of Idaho Library", description: "The University of Idaho Library is a central hub for academic research and student learning. Located on the Moscow campus, it offers a wide range of resources, including books, journals, digital archives, and study spaces. The library provides students and faculty with access to advanced technologies and collaborative workspaces, fostering an environment of intellectual growth. Its modern facilities and dedicated staff support the university's commitment to academic excellence and research." },
+            { src: "images/photo10.jpg", title: "University of Idaho Recreation Center", description: "The University of Idaho Recreation Center is a state-of-the-art facility designed to promote student well-being and physical fitness. Located on the Moscow campus, it features a variety of amenities, including a gymnasium, fitness center, swimming pool, indoor track, and climbing wall. The center offers recreational programs, group fitness classes, and intramural sports to support a healthy and active lifestyle for students, faculty, and staff. It serves as a vibrant community space for exercise, relaxation, and social interaction." },
+            { src: "images/photo11.png", title: "University of Idaho Athletics Swim Center", description: "The University of Idaho Athletics Swim Center is an Olympic-size pool facility supporting competitive swimming and recreational programs. It features advanced equipment, spectator seating, and serves as a hub for varsity training and community use." },
+            { src: "images/photo12.png", title: "University of Idaho Logo", description: "The University of Idaho's logo features the letter 'I' in a bold, block style, often accompanied by the word University in smaller text below. The design represents strength, tradition, and academic excellence, with the color scheme primarily focused on gold and silver, symbolizing achievement and prestige." }
+        ];
+
+        let currentIndex = 0;
+        let slideshowInterval;
+
+        function openModal(index) {
+            currentIndex = index;
+            updateModal();
+            $('#photoModal').modal('show');
+            startSlideshow();
+        }
+
+        function updateModal() {
+            document.getElementById('photoTitle').innerText = images[currentIndex].title;
+            document.getElementById('modalImg').src = images[currentIndex].src;
+            document.getElementById('photoDesc').innerText = images[currentIndex].description;
+            document.getElementById('slideshowProgress').style.width = "0%";
+        }
+
+        function prevImage() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateModal();
+            }
+        }
+
+        function nextImage() {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateModal();
+            }
+        }
+
+        function startSlideshow() {
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(() => {
+                nextImage();
+                document.getElementById('slideshowProgress').style.width = "100%";
+                setTimeout(() => document.getElementById('slideshowProgress').style.width = "0%", 4900);
+            }, 5000);
+        }
+
+        function toggleFullscreen() {
+            let modalImg = document.getElementById('modalImg');
+            if (!document.fullscreenElement) {
+                modalImg.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function downloadImage() {
+            let link = document.createElement('a');
+            link.href = images[currentIndex].src;
+            link.download = images[currentIndex].title + ".jpg";
+            link.click();
+        }
+    </script>
+
+   <!-- Include general.js -->
+  <script src="general.js"></script>
+
+  <!-- JavaScript to dynamically set the background image -->
+  <script>
+    // Set the background image for the body
+    document.body.style.backgroundImage = "url('images/photo13.png')";
+    document.body.style.backgroundSize = "cover";  // Ensures the image covers the whole screen
+    document.body.style.backgroundPosition = "center";  // Center the image
+    document.body.style.backgroundRepeat = "no-repeat";  // Prevents repeating the image
+  </script>
+
+</body>
+</html>
